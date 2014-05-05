@@ -308,6 +308,25 @@ int is_timeout(struct simptcp_socket * sock)
 }
 
 
+/*** Creation de PDU ***/
+
+int MakePdu (struct simptcp_socket *sock, char flags, char *data, int size_pdu, char *pdu)
+{
+
+sock->simptcp_set_sport (pdu, sock->sport);
+sock->simptcp_set_dport (pdu, sock->dport);
+sock->simptcp_set_flags (pdu, flags);
+sock->simptcp_set_seq_num (pdu, sock->seq);
+sock->simptcp_set_ack_num (pdu, sock->ack);
+//sock->simptcp_set_head_len (pdu, );
+sock->simptcp_set_win_size (pdu, size_pdu);
+sock->simptcp_extract_data (pdu, data);
+sock->simptcp_print_packet (pdu);
+
+return 0;
+}
+
+
 /*** socket state dependent functions ***/
 
 
@@ -321,9 +340,17 @@ int is_timeout(struct simptcp_socket * sock)
  * \param addr adresse de niveau transport du socket simpTCP destination
  * \param len taille en octets de l'adresse de niveau transport du socket destination
  * \return  0 si succes, -1 si erreur
+ * \Nous sommes ici du côté client
  */
 int closed_simptcp_socket_state_active_open (struct  simptcp_socket* sock, struct sockaddr* addr, socklen_t len) 
 {
+
+//creation de la trame SYN
+    
+//Envoi du paquet syn
+    
+//passage à l'état suivant: syn_sent
+
 #if __DEBUG__
   printf("function %s called\n", __func__);
 #endif
@@ -2203,5 +2230,8 @@ void timewait_simptcp_socket_state_handle_timeout (struct simptcp_socket* sock)
 #if __DEBUG__
     printf("function %s called\n", __func__);
 #endif
+
+//Make_Pdu(sock->out_buffer,sock->local_simptcp.sin_port,sock->remote_simptcp.sin_port, sock->next_seq_num, sock->next_ack_num,SYN,NULL);
+
 }
 

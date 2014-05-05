@@ -1,5 +1,5 @@
 /*! \file simptcp_lib.h
-*  \brief{Defines the state variables needed by a simptcp protocol entity}
+*  \brief Defines the state variables needed by a simptcp protocol entity
 *  \author{DGEI-INSAT 2010-2011}
 */
 
@@ -64,7 +64,7 @@ enum data_transfert_states{
 
 /*! 
  * \struct simptcp_socket 
- * \brief structure regroupant toutes les variables d'etat specifiques a un socket simpTCP
+ * \brief structure regroupant toutes les variables d'etat specifiques a un socket simpTCP (<a href="./StructureDonnees.jpg">voir diagramme des données</a>)
  *
 */
 struct simptcp_socket { /* SimpTCP Protocol Control Block */
@@ -220,7 +220,7 @@ typedef void (simptcp_socket_state_handle_timeout)
 /**
  * \brief It gathers pointers to functions that will be used to handle different
  * situations (packet arrival, timeout, transmission request) for a particular
- * simpTCP socket state. For example,  active_open is called 
+ * simpTCP socket state(<a href="./StructureDonnees.jpg">(voir diagramme des données)</a>). For example,  active_open is called 
  * when the applicaton calls connect
  */
 typedef struct simptcp_socket_state_funcs {
@@ -238,7 +238,7 @@ typedef struct simptcp_socket_state_funcs {
 /**
  * \brief It gathers pointers to functions that will be used to handle different
  * situations (packet arrival, timeout, transmission request) for all
- * simpTCP socket states. 
+ * simpTCP socket states (<a href="./StructureDonnees.jpg">voir diagramme des données</a>). 
  */
 typedef struct simptcp_socket_states_funcs {
     simptcp_socket_state_funcs closed;

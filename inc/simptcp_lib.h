@@ -18,6 +18,9 @@
 							    fragmentation assuming no IP options */
 #define MAX_RETRANSMIT 255  /* Maximum number of retransmissions */
 
+/*Creation de PDU pour les entités Simptcp */
+
+int MakePdu (struct simptcp_socket *sock, char flags, char *data, int size_pdu, char options, char *pdu);
 
 
 /*!
